@@ -1,15 +1,24 @@
 <?php
 
-/**
- * ACF Pro repeater field shortcode
- *
- * I created this shortcode function because it didn't exist and it was being requested by others
- * I originally posted it here: https://support.advancedcustomfields.com/forums/topic/repeater-field-shortcode/
- *
- * @attr {string} field - (Required) the name of the field that contains a repeater sub group
- * @attr {string} sub_fields - (Required) a comma separated list of sub field names that are part of the field repeater group
- * @attr {string} post_id - (Optional) Specific post ID where your value was entered. Defaults to current post ID (not required). This can also be options / taxonomies / users / etc
- */
+
+// create shortcode for Restaurant Guru Widget (acf field from options)
+
+add_shortcode( "shortcode_restaurant_guru", "restaurant_guru" );
+function restaurant_guru(){
+	$html_widget_acf = get_field("widget_restaurant_guru","option");
+	return $html_widget_acf;
+}
+
+// create shortcode for TripAdvisor Widget (acf field from options)
+
+add_shortcode( "shortcode_tripadvisor_widget", "tripadvisor_widget" );
+function tripadvisor_widget(){
+	$html_widget_acf = get_field("widget","option");
+	return $html_widget_acf;
+}
+
+
+// create shortcode for ACF repeater field
 
 function my_acf_repeater($atts, $content='') {
     extract(shortcode_atts(array(

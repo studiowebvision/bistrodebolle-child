@@ -13,3 +13,114 @@ Template: astra
 .html_tripadvisor_widget #CDSWIDCOE {
     margin: 0 0 15px 0;
 }
+
+/* extra CSS DEV */
+.elementor-message {
+    font-family: "Raleway", Sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    border: solid thin #28a745;
+    padding: 15px;
+}
+#form-field-uur option:disabled {
+    display:none;
+}
+.jet-slider__items.sp-slides {
+    transform: none!important;
+}
+.ui-datepicker {
+background-color: #fff;
+}
+
+.ui-datepicker-header {
+background-color: #f47906;
+}
+
+.ui-datepicker-title {
+color: white;
+}
+
+.ui-widget-content .ui-state-default {
+border: 0px;
+text-align: center;
+background: #fff;
+font-weight: normal;
+color: #000;
+}
+
+.ui-widget-content .ui-state-default:hover {
+border: 0px;
+text-align: center;
+background: #000;
+font-weight: normal;
+color: #fff;
+}
+
+.ui-widget-content .ui-state-active {
+border: 0px;
+background: #f47906;
+color: #fff;
+}
+/* extra CSS DEV */
+
+
+.TA_certificateOfExcellence ul
+{
+	list-style:none!important;
+}
+.fancybox-content-inside {
+    border: none!important;
+    box-shadow: none!important;
+	-moz-box-shadow: none!important;
+    -webkit-box-shadow: none!important;
+    background: none!important;
+}
+@media (min-width: 1281px) {
+  
+.hoofdmenu .wpml-ls-slot-31 {
+    display: none;
+}
+li.traiteur {
+    padding-left: 10px;
+}  
+}
+.reserveren a::after {
+    display: none !important;
+}
+.reserveren>a:visited {
+    border-bottom-color: #fff;
+    border-bottom-style: solid!important;
+    border-bottom-width: 2px!important;
+}
+.reserveren>a:hover {
+    border-color:#f47906;
+
+}
+.reserveren>a {
+    border-radius: 31px;
+    border-style: solid;
+    border-width: 3px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+p {
+    margin-bottom: 0.75em!important;
+}
+body {
+  background-color: #000;
+}
+img.swiper-slide-image {
+    max-height: 250px;
+    width: 250px;
+    object-fit: cover;
+    height: 250px;
+}
+.elementor-arrows-position-outside .swiper-container {
+    width: -webkit-calc(100% - 80px)!important;
+    width: calc(100% - 80px)!important;
+}
+figcaption.elementor-image-carousel-caption {
+    padding-top: 5px;
+}
