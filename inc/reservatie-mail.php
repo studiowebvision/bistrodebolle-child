@@ -49,13 +49,11 @@ function accepteer_reservatie() {
 		//if mail is send show message
 		if($send_mail)
 		{
-			$my_current_screen = get_current_screen();
-			var_dump( $my_current_screen->base );	
 			wp_safe_redirect( wp_get_referer() . '&notice=success');
 			update_field('mail_is_verstuurd', 1, $post_id);
 		}
 		else{
-			wp_safe_redirect(admin_url('edit.php?post_type=reservaties&notice=fail'));
+			wp_safe_redirect( wp_get_referer() . '&notice=fail');
 			update_field('mail_is_verstuurd', 0, $post_id);
 		}
 
