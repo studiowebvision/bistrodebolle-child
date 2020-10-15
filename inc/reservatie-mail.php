@@ -10,7 +10,6 @@ add_action( 'wp_ajax_annuleer_reservatie', 'accepteer_reservatie' );
 function accepteer_reservatie() {
 	if ( isset ( $_GET['action'] ) && !empty($_GET['action']) && !empty($_GET['post_id'])){
 		$post_id = $_GET['post_id'];
-
 		// get ACF field values from post
 		$email = get_field( 'e-mail', $post_id );
 		$naam = get_field( 'naam', $post_id );
@@ -50,12 +49,13 @@ function accepteer_reservatie() {
 		//if mail is send show message
 		if($send_mail)
 		{
-
-			wp_redirect(admin_url('edit.php?post_type=reservaties&notice=success'));
+			$my_current_screen = get_current_screen();
+			var_dump( $my_current_screen->base );	
+			wp_safe_redirect( wp_get_referer() . '&notice=success');
 			update_field('mail_is_verstuurd', 1, $post_id);
 		}
 		else{
-			wp_redirect(admin_url('edit.php?post_type=reservaties&notice=fail'));
+			wp_safe_redirect(admin_url('edit.php?post_type=reservaties&notice=fail'));
 			update_field('mail_is_verstuurd', 0, $post_id);
 		}
 

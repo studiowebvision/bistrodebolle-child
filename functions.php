@@ -54,7 +54,7 @@ require_once __DIR__ . "/inc/reservatie-mail.php";
 /* load admin notices */
 require_once __DIR__ . "/inc/admin-notices.php";
 
-/* load admin notices */
+/* load individual post reservatie */
 require_once __DIR__ . "/inc/edit-posts-reservatie.php";
 
 add_action('admin_head', 'my_custom_fonts');

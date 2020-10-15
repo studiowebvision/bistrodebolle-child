@@ -8,18 +8,16 @@ function webvision_admin_notice()
 	$screen = get_current_screen();
 
     // Only show this message on the admin dashboard and if asked for
-    if ('edit-reservaties' == $screen->id && $_GET['notice'] == 'success')
-    {
-		echo '<div class="notice notice-success is-dismissible">
+    if ('reservaties' == $screen->type && $_GET['notice'] == 'success'){
+		    echo '<div class="notice notice-success is-dismissible">
         <p>Mail is verstuurd naar de klant!</p>
-		</div>';
+		    </div>';
 
     }
-	 if ('edit-reservaties' == $screen->id && $_GET['notice'] == 'fail')
-    {
-		echo '<div class="notice notice-error is-dismissible">
+	 if ('reservaties' == $screen->type && $_GET['notice'] == 'fail'){
+		  echo '<div class="notice notice-error is-dismissible">
         <p>Fout: mail is niet verstuurd naar de klant!</p>
-		</div>';
+	  	</div>';
 
     }
 }
