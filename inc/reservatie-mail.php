@@ -25,10 +25,12 @@ function accepteer_reservatie() {
 		if($_GET['action'] == 'accepteer_reservatie'){
 			$tekst_email = get_field('reservatie_goedgekeurd', 'option');
 			$subject = get_field('reservatie_goedgekeurd_onderwerp', 'option');
+			$goedgekeurd = 1;
 		}
 		if($_GET['action'] == 'annuleer_reservatie'){
 			$tekst_email = get_field('reservatie_geannuleerd', 'option');
 			$subject = get_field('reservatie_geannuleerd_onderwerp', 'option');
+			$goedgekeurd = 0;
 		}
 
 		// convert special HTML variables and mapping with ACF field values
@@ -51,6 +53,12 @@ function accepteer_reservatie() {
 		{
 			wp_safe_redirect( wp_get_referer() . '&notice=success');
 			update_field('mail_is_verstuurd', 1, $post_id);
+			if( $goedgekeurd ){
+				update_field( 'bevestigd__geannuleerd', 1, $post_id );
+			}
+			if( !$goedgekeurd ){
+				update_field( 'bevestigd__geannuleerd', 0, $post_id );
+			}
 		}
 		else{
 			wp_safe_redirect( wp_get_referer() . '&notice=fail');

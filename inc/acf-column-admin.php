@@ -11,9 +11,9 @@ function add_new_reservaties_column( $columns ) {
 	$columns['datum_reservatie'] = 'Datum reservatie';
 	$columns['uur_reservatie'] = 'Uur reservatie';
 	$columns['lunch_diner_reservatie'] = 'Lunch / diner';
+	$columns['mail_is_verstuurd'] = 'Mail is verstuurd';
 	$columns['goedkeuren'] = 'Bevestigen';
 	$columns['annuleren'] = 'Annuleren';
-	$columns['mail_is_verstuurd'] = 'Mail is verstuurd';
 	unset($columns['date']);
     return $columns;
 }
@@ -56,19 +56,28 @@ function add_new_reservaties_admin_column_show_value( $column, $post_id ) {
 
 	}
 
-	if ( 'goedkeuren' == $column ) {
+	$bevestigd_geannuleerd = get_field( 'bevestigd__geannuleerd' );
 
-	    if(get_field('mail_is_verstuurd')){
-           printf( 'Reservatie is bevestigd');
+	if ( 'goedkeuren' == $column ) {
+		
+		if( $bevestigd_geannuleerd ){
+			printf( 'Reservatie is bevestigd' );
 		}
-	    else{
+		else{
 			printf( '<a class="button" href="'.wp_nonce_url(admin_url( 'admin-ajax.php?action=accepteer_reservatie&post_id='.$post_id ),'reservatie').'">Reservatie bevestigen</a>');
 		}
-
-  }
+		
+  	}
 	if ( 'annuleren' == $column ) {
 
-		printf( '<a class="button" href="'.wp_nonce_url(admin_url( 'admin-ajax.php?action=annuleer_reservatie&post_id='.$post_id ),'reservatie').'">Reservatie annuleren</a>');
+		if( $bevestigd_geannuleerd == 0){
+			printf( 'Reservatie is geannuleerd' );
+
+		}
+		else{
+			printf( '<a class="button" href="'.wp_nonce_url(admin_url( 'admin-ajax.php?action=annuleer_reservatie&post_id='.$post_id ),'reservatie').'">Reservatie annuleren</a>');
+		}
+		
 
 	}
 

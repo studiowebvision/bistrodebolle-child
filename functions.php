@@ -33,6 +33,9 @@ add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 /* load ACF options page */
 require_once __DIR__ . "/inc/acf-options.php";
 
+/* load ACF fields */
+require_once __DIR__ . "/inc/acf-fields.php";
+
 /* load ACF columns admin */
 require_once __DIR__ . "/inc/acf-column-admin.php";
 
