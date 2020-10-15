@@ -68,9 +68,9 @@ function add_new_reservaties_admin_column_show_value( $column, $post_id ) {
   }
 	if ( 'annuleren' == $column ) {
 
-        printf( '<a class="button" href="'.wp_nonce_url(admin_url( 'admin-ajax.php?action=annuleer_reservatie&post_id='.$post_id ),'reservatie').'">Reservatie annuleren</a>');
+		printf( '<a class="button" href="'.wp_nonce_url(admin_url( 'admin-ajax.php?action=annuleer_reservatie&post_id='.$post_id ),'reservatie').'">Reservatie annuleren</a>');
 
-    }
+	}
 
 }
 
@@ -78,20 +78,20 @@ add_filter('manage_reservaties_posts_custom_column', 'add_new_reservaties_admin_
 
 // 2. Make the column sortable
 function set_custom_reservaties_sortable_columns( $columns ) {
-  $columns['naam'] = 'naam';
-  return $columns;
+	$columns['naam'] = 'naam';
+	return $columns;
 }
 add_filter( 'manage_edit-reservaties_sortable_columns', 'set_custom_reservaties_sortable_columns' );
 
 function reservaties_custom_orderby( $query ) {
-  if ( ! is_admin() )
-    return;
+	if ( ! is_admin() )
+		return;
 
-  $orderby = $query->get('orderby');
+	$orderby = $query->get('orderby');
 
-  if ( 'naam' == $orderby ) {
-    $query->set( 'meta_key', 'naam' );
-    $query->set( 'orderby', 'meta_value' );
-  }
+	if ( 'naam' == $orderby ) {
+		$query->set( 'meta_key', 'naam' );
+		$query->set( 'orderby', 'meta_value' );
+	}
 }
 add_action( 'pre_get_posts', 'reservaties_custom_orderby' );
