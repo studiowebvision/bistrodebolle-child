@@ -61,6 +61,11 @@ border: 0px;
 background: #f47906;
 color: #fff;
 }
+
+.fancybox-content-inside{
+	width:auto!important;
+}
+
 /* extra CSS DEV */
 
 
