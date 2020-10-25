@@ -2,5 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/bistrodebolle/staging.bistrodebolle.be/wp-content/themes/bistrodebolle-child
-    - /bin/cp -r * $DEPLOYPATH
+    - /bin/rm -Rf $DEPLOYPATH
+    - /bin/mkdir $DEPLOYPATH
+    - /bin/cp -R src/ $DEPLOYPATH
     
