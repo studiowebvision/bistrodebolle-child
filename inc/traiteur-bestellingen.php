@@ -109,9 +109,6 @@ function bestellijst_afhaal_uur(){
 }
 add_shortcode( 'bestellijst_afhaal_uur', 'bestellijst_afhaal_uur' );
 
-
-
-
 add_action( 'wp_ajax_nopriv_get_datum', 'get_datum' );
 add_action( 'wp_ajax_get_datum', 'get_datum' );
 
