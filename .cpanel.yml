@@ -4,5 +4,5 @@ deployment:
     - export DEPLOYPATH=/home/bistrodebolle/staging.bistrodebolle.be/wp-content/themes/bistrodebolle-child
     - /bin/rm -Rf $DEPLOYPATH
     - /bin/mkdir $DEPLOYPATH
-    - /bin/cp -R src/ $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
     
