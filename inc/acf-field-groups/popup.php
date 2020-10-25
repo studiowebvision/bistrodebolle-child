@@ -160,3 +160,61 @@ if( function_exists('acf_add_local_field_group') ):
     ));
     
     endif;
+
+/****************************
+ * ACF FIELDS POPUP ELEMENTOR TEMPLATE ID (ADMIN ONLY)
+ ***************************/ 
+if( function_exists('acf_add_local_field_group') ):
+
+    acf_add_local_field_group(array(
+        'key' => 'group_5f9573593c859',
+        'title' => 'Popup Elementor',
+        'fields' => array(
+            array(
+                'key' => 'field_5f95737010d84',
+                'label' => 'Popup template elementor ID',
+                'name' => 'popup_template_elementor_id',
+                'type' => 'number',
+                'instructions' => 'Geef hier de elementor template ID in',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'min' => '',
+                'max' => '',
+                'step' => '',
+                'wpml_cf_preferences' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'options_page',
+                    'operator' => '==',
+                    'value' => 'popup',
+                ),
+                array(
+                    'param' => 'current_user_role',
+                    'operator' => '==',
+                    'value' => 'administrator',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+    
+    endif;
