@@ -1,5 +1,10 @@
 <?php
-/* options page acf */
+/*********************
+ * Create ACF options
+ ********************/
+
+ /* Impressie options */
+ 
 if( function_exists('acf_add_options_page') ) {
 
 	acf_add_options_page(array(
@@ -15,6 +20,8 @@ if( function_exists('acf_add_options_page') ) {
 
 }
 
+/* Opties options */
+
 if( function_exists('acf_add_options_page') ) {
 
 	acf_add_options_page(array(
@@ -28,6 +35,8 @@ if( function_exists('acf_add_options_page') ) {
 	));
 
 }
+
+/* Bestellijst options */
 if( function_exists('acf_add_options_page') ) {
 
 	acf_add_options_page(array(
@@ -38,6 +47,21 @@ if( function_exists('acf_add_options_page') ) {
 		'redirect'		=> false,
 		'icon_url' => 'dashicons-list-view',
 		'position' => 2
+	));
+
+}
+
+/* Popup options */
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Popup',
+		'menu_title'	=> 'Popup',
+		'menu_slug' 	=> 'popup',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+		'icon_url' => 'dashicons-external',
+		'position' => 4
 	));
 
 }

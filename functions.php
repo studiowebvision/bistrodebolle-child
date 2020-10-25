@@ -19,7 +19,15 @@ define( 'CHILD_THEME_BISTRO_DE_BOLLE_VERSION', '1.0.0' );
 function child_enqueue_styles() {
 
 	wp_enqueue_style( 'bistro-de-bolle-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_BISTRO_DE_BOLLE_VERSION, 'all' );
-	wp_enqueue_script( 'custom-jquery', get_stylesheet_directory_uri() . '/custom-jquery.js', array( 'jquery' ), '1.0.0', true );
+    wp_register_script( 'custom-jquery', get_stylesheet_directory_uri() . '/custom-jquery.js', array( 'jquery' ), '1.0.0', true );
+    // Localize the script with new data
+    $script_data_array = array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'security' => wp_create_nonce( 'security' ),
+    );
+    wp_localize_script( 'custom-jquery', 'scriptjs', $script_data_array );
+    wp_enqueue_script( 'custom-jquery' );
+
 	wp_enqueue_style( 'css-datepicker','https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', array(), '1.1', 'all' );
 
 	// Load the datepicker script (pre-registered in WordPress).
@@ -31,11 +39,12 @@ function child_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
 /* load ACF options page */
-require_once __DIR__ . "/inc/acf-options.php";
+require_once __DIR__ . "/inc/acf-options-pages.php";
 
-/* load ACF fields */
-require_once __DIR__ . "/inc/acf-fields.php";
-
+/* load ACF fields Groups */
+require_once __DIR__ . "/inc/acf-field-groups/opties.php";
+require_once __DIR__ . "/inc/acf-field-groups/popup.php";
+require_once __DIR__ . "/inc/acf-field-groups/traiteurlijst.php";
 /* load ACF columns admin */
 require_once __DIR__ . "/inc/acf-column-admin.php";
 

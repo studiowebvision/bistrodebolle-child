@@ -44,7 +44,10 @@ add_shortcode( 'bestellijst_voorgerechten', 'bestellijst_voorgerechten_form_func
 
 
 
-// hoofdgerechten bestelformulier
+/* 
+Traiteur bestellingen hoofdgerechten aantallen met + en - icoontjes
+om in het bestelformulier het aantal geselecteerde hoofdgerechten mee te sturen
+*/
 function bestellijst_hoofdgerechten_func(){
 	if( have_rows('hoofdgerechten', 'option') ):
 $bestellijst = array();
@@ -68,6 +71,7 @@ $bestellijst = array();
 }
 add_shortcode( 'bestellijst_hoofdgerechten_form', 'bestellijst_hoofdgerechten_func' );
 
+/* Traiteur bestelling toon hoofdgerechten */
 function bestellijst_hoofdgerechten_form_func(){
 	if( have_rows('hoofdgerechten', 'option') ):
 $bestellijst = array();
@@ -81,3 +85,63 @@ $bestellijst = array();
 	endif;
 }
 add_shortcode( 'bestellijst_hoofdgerechten', 'bestellijst_hoofdgerechten_form_func' );
+
+/* Traiteur bestellingen afhaal datums, return in array met shortcode */
+function bestellijst_afhaal_datum(){
+	if( have_rows('datum_traiteur_bestellingen', 'option') ):
+    $afhaal_datum = array("0" => "Kies een datum");
+		  while( have_rows('datum_traiteur_bestellingen', 'option') ): the_row();
+        $afhaal_datum[]= get_sub_field('datum');
+
+      endwhile;
+   $return_datum = implode("\n", $afhaal_datum);
+   return $return_datum;
+
+	endif;
+}
+add_shortcode( 'bestellijst_afhaal_datum', 'bestellijst_afhaal_datum' );
+
+/* Traiteur bestellingen afhaal uren, return in array met shortcode */
+function bestellijst_afhaal_uur(){
+  $afhaal_uur = "Kies een tijdstip";
+  return $afhaal_uur;
+
+}
+add_shortcode( 'bestellijst_afhaal_uur', 'bestellijst_afhaal_uur' );
+
+
+
+
+add_action( 'wp_ajax_nopriv_get_datum', 'get_datum' );
+add_action( 'wp_ajax_get_datum', 'get_datum' );
+
+function get_datum() {
+  check_ajax_referer('security', 'security');
+  if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) { 
+    $datum = $_POST['datum'];
+
+    if( have_rows('datum_traiteur_bestellingen', 'option') ):
+      $afhaal_uur = array("0" => "<option>Kies een tijdstip</option>");
+        while( have_rows('datum_traiteur_bestellingen', 'option') ): the_row();
+          if( get_sub_field('datum') == $datum):
+
+            $interval = get_sub_field('interval_tijdstip');
+            $totalSecs   = intval($interval) * 60; 
+            $start_uur = get_sub_field('uur_afhalen_vanaf');
+            $eind_uur = get_sub_field('uur_afhalen_tot');
+
+            for( $i=strtotime($start_uur); $i<=strtotime($eind_uur); $i+=$totalSecs) {
+              $afhaal_uur[] = "<option>".date('H:i', $i)."</option>";
+                  
+              }
+        
+          endif;
+        endwhile;
+     $return_uur = implode("\n", $afhaal_uur);
+     echo $return_uur;
+  
+    endif;
+
+  }
+  die();
+}

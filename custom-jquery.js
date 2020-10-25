@@ -1,26 +1,43 @@
 jQuery(document).ready(function($) {
-var delay = 100; setTimeout(function() {
-$('.elementor-tab-title').removeClass('elementor-active');
- $('.elementor-tab-content').css('display', 'none'); }, delay);
 
+	// disable option value 'Kies een datum' in traiteurlijst page
+	$("select option:contains('Kies een datum'),select option:contains('Kies een tijdstip')").attr("disabled","disabled");
 
-});
+	var delay = 100; setTimeout(function() {
+	$('.elementor-tab-title').removeClass('elementor-active');
+	$('.elementor-tab-content').css('display', 'none'); }, delay);
+	});
 
-document.addEventListener( 'wpcf7mailsent', function( event ) {
+	document.addEventListener( 'wpcf7mailsent', function( event ) {
+		if(document.URL.indexOf("contact") >= 0){
+			location = 'aanvraag-contact';
+		}
+	}, false );
 
-
- if(document.URL.indexOf("contact") >= 0){
- location = 'aanvraag-contact';
-}
-
-}, false );
+	
+	// ajax request by change date on traiteur bestelling
+	jQuery( '#form-field-datum' ).change(function() {
+		var datum = jQuery(this).val();
+		jQuery.ajax({
+			url : scriptjs.ajaxurl,
+			type : 'post',
+			data : {
+				action : 'get_datum',
+				datum : datum,
+				security : scriptjs.security // security layer
+			},
+			success : function( response ) {
+				jQuery('#form-field-uur_afhaling').empty().append(response);
+			}
+		});
+	});
 
 jQuery(function($){
 
 	$('#form-field-datum').attr('autocomplete','off');
-var zaterdag;
- $("#form-field-datum").datepicker({
-	// change: function(dateText, inst) {
+		var zaterdag;
+ 		$("#form-field-datum").datepicker({
+		// change: function(dateText, inst) {
 		format: 'DD-MM-YYYY',
 		beforeShowDay: noMondays,
 		    onSelect: function (dateText, inst) {
@@ -60,9 +77,6 @@ var zaterdag;
 
 		defaultDate: new Date()
   }).on('changeDate',function(e){
-
-
-
         });
 
 	  $('#form-field-lunch').change(function() {
@@ -70,7 +84,7 @@ var zaterdag;
 		var geselecteerde_option = $(this).children("option:selected").val();
 		$('#form-field-uur').val('');
 
-		if( geselecteerde_option == 'Lunch' || geselecteerde_option =='Déjeuner'){
+		if( geselecteerde_option == 'Lunch' || geselecteerde_option =='Déjeuner' ){
 			// zet lunch uren aan
 			$("option[value='18:30'],option[value='18:45'],option[value='19:00'],option[value='19:15'],option[value='19:30'],option[value='19:45'],option[value='20:00'],option[value='20:15'],option[value='20:30'],option[value='20:45'],option[value='21:00'],option[value='21:15']").attr('disabled', true);
 			// zet diner uren uit
@@ -136,3 +150,4 @@ function noMondays(date){
       else
             return [ true, "", "" ]
 }
+
