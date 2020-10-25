@@ -4,7 +4,7 @@
 // create elementor pop-up function
 function webvision_elementor_popup(){
 	// set popup id
-	$popup_id = '34347';
+	$popup_id = get_field("popup_template_elementor_id","option");
 
 	// insert the popup to the current page
 	ElementorPro\Modules\Popup\Module::add_popup_to_location( $popup_id );
