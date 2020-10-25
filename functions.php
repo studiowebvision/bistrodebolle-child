@@ -51,6 +51,9 @@ require_once __DIR__ . "/inc/admin-notices.php";
 require_once __DIR__ . "/inc/acf-field-groups/opties.php";
 require_once __DIR__ . "/inc/acf-field-groups/popup.php";
 require_once __DIR__ . "/inc/acf-field-groups/traiteurlijst.php";
+require_once __DIR__ . "/inc/acf-field-groups/menukaart.php";
+require_once __DIR__ . "/inc/acf-field-groups/slideshow-home.php";
+require_once __DIR__ . "/inc/acf-field-groups/impressie-galerij.php";
 /* load ACF columns admin */
 require_once __DIR__ . "/inc/acf-column-admin.php";
 
@@ -64,7 +67,7 @@ require_once __DIR__ . "/inc/dashboard-widgets.php";
 require_once __DIR__ . "/inc/popup.php";
 
 /* load traiteurlijst bestellingen */
-require_once __DIR__ . "/inc/traiteur-bestellingen.php";
+require_once __DIR__ . "/inc/traiteur/traiteur-bestellingen.php";
 
 /* load Reservation script */
 require_once __DIR__ . "/inc/reservations/form-submit.php";

@@ -1,0 +1,133 @@
+<?php
+/**************************
+ * ACF FIELD MENU KAART
+ **************************/
+if( function_exists('acf_add_local_field_group') ):
+
+    acf_add_local_field_group(array(
+        'key' => 'group_5e1508d29534e',
+        'title' => 'Menukaart',
+        'fields' => array(
+            array(
+                'key' => 'field_5e1508d7b6bf4',
+                'label' => 'Menu',
+                'name' => 'menu',
+                'type' => 'repeater',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'collapsed' => '',
+                'min' => 0,
+                'max' => 0,
+                'layout' => 'table',
+                'button_label' => '',
+                'wpml_cf_preferences' => '2',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_5e1634f19308c',
+                        'label' => 'Titel',
+                        'name' => 'titel',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'wpml_cf_preferences' => 2,
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_5e1634fc9308d',
+                        'label' => 'Omschrijving',
+                        'name' => 'omschrijving',
+                        'type' => 'textarea',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'wpml_cf_preferences' => 2,
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'maxlength' => '',
+                        'rows' => 2,
+                        'new_lines' => '',
+                    ),
+                    array(
+                        'key' => 'field_5e1635089308e',
+                        'label' => 'Prijs',
+                        'name' => 'prijs',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '8',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'wpml_cf_preferences' => 1,
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '€',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_5e164a404b92c',
+                        'label' => 'Label',
+                        'name' => 'label',
+                        'type' => 'text',
+                        'instructions' => 'Rode label in de menukaart',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'wpml_cf_preferences' => 2,
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'menukaart',
+                ),
+            ),
+        ),
+        'menu_order' => 8,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+    
+    endif;
