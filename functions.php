@@ -38,6 +38,9 @@ function child_enqueue_styles() {
 
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
+/* Register CPT's (Custom Post Types) */
+require_once __DIR__ . "/inc/register-cpt.php";
+
 /* load ACF options page */
 require_once __DIR__ . "/inc/acf-options-pages.php";
 
