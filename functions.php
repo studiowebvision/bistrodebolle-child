@@ -68,6 +68,7 @@ require_once __DIR__ . "/inc/popup.php";
 
 /* load traiteurlijst bestellingen */
 require_once __DIR__ . "/inc/traiteur/traiteur-bestellingen.php";
+require_once __DIR__ . "/inc/traiteur/send-email-after-submit.php";
 
 /* load Reservation script */
 require_once __DIR__ . "/inc/reservations/form-submit.php";

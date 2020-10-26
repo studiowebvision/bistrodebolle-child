@@ -71,6 +71,7 @@ $bestellijst = array();
 }
 add_shortcode( 'bestellijst_hoofdgerechten_form', 'bestellijst_hoofdgerechten_func' );
 
+
 /* Traiteur bestelling toon hoofdgerechten */
 function bestellijst_hoofdgerechten_form_func(){
 	if( have_rows('hoofdgerechten', 'option') ):

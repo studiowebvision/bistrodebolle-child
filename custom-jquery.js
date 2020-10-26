@@ -7,13 +7,6 @@ jQuery(document).ready(function($) {
 	$('.elementor-tab-title').removeClass('elementor-active');
 	$('.elementor-tab-content').css('display', 'none'); }, delay);
 	});
-
-	document.addEventListener( 'wpcf7mailsent', function( event ) {
-		if(document.URL.indexOf("contact") >= 0){
-			location = 'aanvraag-contact';
-		}
-	}, false );
-
 	
 	// ajax request by change date on traiteur bestelling
 	jQuery( '#form-field-datum' ).change(function() {
@@ -27,7 +20,8 @@ jQuery(document).ready(function($) {
 				security : scriptjs.security // security layer
 			},
 			success : function( response ) {
-				jQuery('#form-field-uur_afhaling').empty().append(response);
+				jQuery('#form-field-uur_afhaling').empty();
+				jQuery('#form-field-uur_afhaling').append(response);
 			}
 		});
 	});
