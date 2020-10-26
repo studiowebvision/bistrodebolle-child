@@ -40,8 +40,8 @@ if( function_exists('acf_add_options_page') ) {
 if( function_exists('acf_add_options_page') ) {
 
 	acf_add_options_page(array(
-		'page_title' 	=> 'Bestellijst',
-		'menu_title'	=> 'Bestellijst',
+		'page_title' 	=> 'Traiteurlijst',
+		'menu_title'	=> 'Traiteurlijst',
 		'menu_slug' 	=> 'bestellijst',
 		'capability'	=> 'edit_posts',
 		'redirect'		=> false,
