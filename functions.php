@@ -36,7 +36,7 @@ function child_enqueue_styles() {
 	wp_enqueue_style( 'jquery-ui' );
 }
 
-add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
+add_action( 'elementor/frontend/after_enqueue_styles', 'child_enqueue_styles', 15 );
 
 /* Register CPT's (Custom Post Types) */
 require_once __DIR__ . "/inc/register-cpt.php";
