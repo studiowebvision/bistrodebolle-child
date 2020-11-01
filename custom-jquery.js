@@ -1,4 +1,5 @@
-( function ( $ )  {
+(function($) {
+jQuery(document).ready(function($) {
 
 	// disable option value 'Kies een datum' in traiteurlijst page
 	$("select option:contains('Kies een datum'),select option:contains('Kies een tijdstip')").attr("disabled","disabled").attr('value',"");
@@ -6,7 +7,7 @@
 	var delay = 100; setTimeout(function() {
 	$('.elementor-tab-title').removeClass('elementor-active');
 	$('.elementor-tab-content').css('display', 'none'); }, delay);
-} ) (  jQuery  ) ;
+	});
 	
 	// ajax request by change date on traiteur bestelling
 	jQuery( '#form-field-datum' ).change(function() {
@@ -144,4 +145,4 @@ function noMondays(date){
       else
             return [ true, "", "" ]
 }
-
+})(jQuery);
