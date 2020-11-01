@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
 	// disable option value 'Kies een datum' in traiteurlijst page
-	$("select option:contains('Kies een datum'),select option:contains('Kies een tijdstip')").attr("disabled","disabled");
+	$("select option:contains('Kies een datum'),select option:contains('Kies een tijdstip')").attr("disabled","disabled").attr('value',"");
 
 	var delay = 100; setTimeout(function() {
 	$('.elementor-tab-title').removeClass('elementor-active');
