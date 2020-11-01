@@ -58,6 +58,7 @@ require_once __DIR__ . "/inc/acf-field-groups/traiteurlijst.php";
 require_once __DIR__ . "/inc/acf-field-groups/menukaart.php";
 require_once __DIR__ . "/inc/acf-field-groups/slideshow-home.php";
 require_once __DIR__ . "/inc/acf-field-groups/impressie-galerij.php";
+require_once __DIR__ . "/inc/acf-field-groups/pagina.php";
 /* load ACF columns admin */
 require_once __DIR__ . "/inc/acf-column-admin.php";
 
@@ -142,3 +143,8 @@ add_action( 'wp_head', 'dequeue_dequeue_plugin_style', PHP_INT_MAX  );
 }
 add_action( 'wp_enqueue_scripts', 'discover_scripts', 100 ); */
 
+/* Hide Gutenberg editor */
+add_action( "init", function() {
+    remove_post_type_support( "post", "editor" );
+    remove_post_type_support( "page", "editor" );
+}, 99);
