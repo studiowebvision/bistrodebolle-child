@@ -25,7 +25,7 @@ if( function_exists('acf_add_local_field_group') ):
                 ),
                 'wpml_cf_preferences' => 0,
                 'display_format' => 'd/m/Y',
-                'return_format' => 'd/m/Y',
+                'return_format' => 'Ymd',
                 'first_day' => 1,
             ),
             array(
@@ -43,7 +43,7 @@ if( function_exists('acf_add_local_field_group') ):
                 ),
                 'wpml_cf_preferences' => 0,
                 'display_format' => 'd/m/Y',
-                'return_format' => 'd/m/Y',
+                'return_format' => 'Ymd',
                 'first_day' => 1,
             ),
             array(

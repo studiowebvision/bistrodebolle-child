@@ -4,8 +4,8 @@
 // create elementor pop-up function
 function webvision_elementor_popup(){
 	// set popup id
-	$popup_id = get_field("popup_template_elementor_id","option");
-
+	/* $popup_id = get_field("popup_template_elementor_id","option"); */
+	$popup_id = "34347";
 	// insert the popup to the current page
 	ElementorPro\Modules\Popup\Module::add_popup_to_location( $popup_id );
 	
@@ -26,34 +26,44 @@ function webvision_elementor_popup(){
 }
 
 
+
 // popup melding homepage
 function popup() {
-	/* Get start date and end date from ACF */
-	$date_start = get_field('start_datum', "option");
-	$date_end = get_field('eind_datum', "option");
+	/* Get start date and end date from ACF, convert to timestamp to compare date today */
+	$date_start = strtotime( get_field('start_datum', "option") );
+	$date_end = strtotime( get_field('eind_datum', "option") );
 
 	/* Get start hour and end hour from ACF */
 	$use_time = get_field('use_time', "option");
-	$hour_start = get_field('start_uur', "option");
-	$hour_end = get_field('eind_uur', "option");
+	$hour_start = strtotime( get_field('start_uur', "option") );
+	$hour_end = strtotime( get_field('eind_uur', "option") );
 
-	/* Get date from timezone Brussels */
-	$tz = 'Europe/Brussels';
-	$timestamp = time();
-	$dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-	$dt->setTimestamp($timestamp); //adjust the object to correct timestamp
-	$date_only = $dt->format('d/m/Y'); // use only date from today
-	$date_time = $dt->format('H:i:s'); // use date and time from today
+
+	$dt = new DateTime(); 
+	$timezone = new DateTimeZone('Europe/Brussels'); // set timezone to Brussels
+	$dt->setTimezone($timezone);
+	$date_only = strtotime(date("Ymd", $dt->getTimestamp())); // get timestamp from today to compare with acf fields
+	$date_time = strtotime($dt->format('H:i:s')); // use date and time from today
+
+/* 	//for debugging only
+	echo "<pre>";
+	var_dump( date("d/m/Y", $date_only ) ); // show the date now
+	var_dump( date("H:i:s", $date_time ) ); // show the time now
+	var_dump( date("d/m/Y", $date_start ), date("d/m/Y", $date_end )); // show the start and end date
+	var_dump( date("H:i:s", $hour_start ), date("H:i:s", $hour_end )); // show the start and end date
+	echo "</pre>"; 
+*/
 
 	/* if date only is used by ACF */
-	if( !$use_time && !empty($date_start) && !empty($date_end) && $date_only >= $date_start && $date_only <= $date_end && is_front_page(  )){
+	if( !$use_time && !empty($date_start) && !empty($date_end) && $date_only >= $date_start && $date_end >= $date_only && !($date_end < $date_only) && is_front_page(  )){
 		echo webvision_elementor_popup();
 	}
 	/* if date and time is used by ACF */
-	if( $use_time && !empty($date_start) && !empty($date_end) && !empty($hour_start) && !empty($hour_end) && $date_only >= $date_start && $date_only <= $date_end && $date_time >= $hour_start && $date_time <= $hour_end && is_front_page(  )){
-		echo webvision_elementor_popup();
+	if( $use_time && !empty($date_start) && !empty($date_end) && $date_only >= $date_start && $date_end >= $date_only && !($date_end < $date_only) && is_front_page(  )){
+		if( !empty($hour_start) && !empty($hour_end) && $date_time >= $hour_start && $date_time <= $hour_end){
+			echo webvision_elementor_popup();
+		}	
 	}
-	
 }
 // popup laden in footer
 add_action('wp_footer', 'popup');

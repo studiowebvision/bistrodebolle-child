@@ -9,18 +9,47 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bistro-de-bolle
 Template: astra
 */
-
+ul{
+    list-style: none!important;
+}
+.lsfe-layout-horizontal .lsfe-menu {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.jet-tabs__content-wrapper{
+    background:black!important;
+}
 .html_tripadvisor_widget #CDSWIDCOE {
     margin: 0 0 15px 0;
 }
 
+/* placeholder color black */
+textarea::-webkit-input-placeholder,
+textarea:-moz-placeholder,
+textarea::-moz-placeholder,
+textarea:-ms-input-placeholder,
+textarea::placeholder,
+::placeholder,
+::-webkit-input-placeholder,
+:-ms-input-placeholder  {
+    color: #000!important;  
+}
+
 /* extra CSS DEV */
 .elementor-message {
-    font-family: "Raleway", Sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    border: solid thin #28a745;
-    padding: 15px;
+    margin: 0;
+    font-size: 1.125rem!important;
+    border:1px solid #e06a03;
+    line-height: 2;
+    padding: .5em;
+}
+.traiteur .elementor-message{
+    margin-top:35px;
 }
 #form-field-uur option:disabled {
     display:none;

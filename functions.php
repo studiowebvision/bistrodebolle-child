@@ -18,13 +18,14 @@ define( 'CHILD_THEME_BISTRO_DE_BOLLE_VERSION', '1.0.0' );
  */
 function child_enqueue_styles() {
 
-	wp_enqueue_style( 'bistro-de-bolle-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_BISTRO_DE_BOLLE_VERSION, 'all' );
     wp_register_script( 'custom-jquery', get_stylesheet_directory_uri() . '/custom-jquery.js', array( 'jquery' ), '1.0.0', true );
+
     // Localize the script with new data
-    $script_data_array = array(
+      $script_data_array = array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'security' => wp_create_nonce( 'security' ),
     );
+
     wp_localize_script( 'custom-jquery', 'scriptjs', $script_data_array );
     wp_enqueue_script( 'custom-jquery' );
 
@@ -33,10 +34,13 @@ function child_enqueue_styles() {
 	// Load the datepicker script (pre-registered in WordPress).
 		
 	wp_enqueue_script( 'jquery-ui-datepicker' );
-	wp_enqueue_style( 'jquery-ui' );
+    wp_enqueue_style( 'jquery-ui' );
+    
+	wp_enqueue_style( 'bistro-de-bolle-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_BISTRO_DE_BOLLE_VERSION, 'all' );
+
 }
 
-add_action( 'elementor/frontend/after_enqueue_styles', 'child_enqueue_styles', 15 );
+add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
 /* Register CPT's (Custom Post Types) */
 require_once __DIR__ . "/inc/register-cpt.php";
@@ -99,3 +103,42 @@ function jj_filter_private_pages_from_menu ($items, $args) {
     return $items;
 }
 add_filter ('wp_nav_menu_objects', 'jj_filter_private_pages_from_menu', 10, 2);
+
+/* function astra_force_remove_style() {
+    add_filter( 'print_styles_array', function($styles) {
+
+        // Set styles to remove.
+        $styles_to_remove = array('astra-theme-css', 'astra-addon-css');
+        if(is_array($styles) AND count($styles) > 0){
+            foreach($styles AS $key => $code){
+                if(in_array($code, $styles_to_remove)){
+                    unset($styles[$key]);
+                }
+            }
+        }
+        return $styles;
+    }); 
+}
+add_action('wp_enqueue_scripts', 'astra_force_remove_style', 99); */
+
+ function dequeue_dequeue_plugin_style(){
+    
+    wp_dequeue_style( 'pafe-font-awesome-5' );
+    wp_dequeue_style( 'wpml-legacy-horizontal-list-0' );
+    
+    wp_deregister_style('pafe-font-awesome-5');
+    wp_deregister_style('wpml-legacy-horizontal-list-0');
+    
+}
+add_action('wp_print_styles', 'dequeue_dequeue_plugin_style', 100);
+add_action( 'wp_enqueue_scripts', 'dequeue_dequeue_plugin_style', PHP_INT_MAX  );
+add_action( 'wp_head', 'dequeue_dequeue_plugin_style', PHP_INT_MAX  ); 
+
+/* function discover_scripts() 
+{
+    // Registered styles
+    var_dump(wp_styles()->registered);
+
+}
+add_action( 'wp_enqueue_scripts', 'discover_scripts', 100 ); */
+
