@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+( function ( $ )  {
 
 	// disable option value 'Kies een datum' in traiteurlijst page
 	$("select option:contains('Kies een datum'),select option:contains('Kies een tijdstip')").attr("disabled","disabled").attr('value',"");
@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 	var delay = 100; setTimeout(function() {
 	$('.elementor-tab-title').removeClass('elementor-active');
 	$('.elementor-tab-content').css('display', 'none'); }, delay);
-	});
+} ) (  jQuery  ) ;
 	
 	// ajax request by change date on traiteur bestelling
 	jQuery( '#form-field-datum' ).change(function() {
