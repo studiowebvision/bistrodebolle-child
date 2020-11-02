@@ -106,7 +106,15 @@ color: #fff;
 {
 	list-style:none!important;
 }
-
+/* global styles */
+.background-container h1,
+.background-container h2,
+.background-container h3,
+.background-container h4,
+.background-container h5,
+.background-container h6{
+    margin-bottom: .5em;
+}
 @media (min-width: 1281px) {
   
 .hoofdmenu .wpml-ls-slot-31 {
