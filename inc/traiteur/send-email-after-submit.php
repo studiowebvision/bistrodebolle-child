@@ -20,5 +20,6 @@ add_action( 'pafe/form_builder/new_record', function( $record ) {
 	    $to = $email;
 		$subject = 'Traiteur bestelling - Bistro De Bolle';
         $headers = 'From: Bistro De Bolle <info@bistrodebolle.be>' . "\r\n";
-		wp_mail( $to, $subject, $message, $headers );
+        wp_mail( $to, $subject, $message, $headers );
+        wp_mail( "info@bistrodebolle.be", $subject, $message, $headers );
 }, 10, 2);
