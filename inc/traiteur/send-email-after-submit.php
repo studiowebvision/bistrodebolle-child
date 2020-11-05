@@ -23,5 +23,5 @@ add_action( 'pafe/form_builder/new_record', function( $record ) {
         $header_admin = 'From: Bistro De Bolle <info@bistrodebolle.be>' . "\r\n";
         $header_admin .= 'Reply-To: <'.$email.'>';
         wp_mail( $to, $subject, $message, $headers );
-        wp_mail( "sander.rebry@telenet.be", $subject, $message, $header_admin );
+        wp_mail( "info@studiowebvision.be", $subject, $message, $header_admin );
 }, 10, 2);
