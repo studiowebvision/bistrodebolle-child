@@ -28,7 +28,7 @@ function webvision_elementor_popup(){
 
 
 // popup melding homepage
-function popup() {
+function webvision_popup() {
 	/* Get start date and end date from ACF, convert to timestamp to compare date today */
 	$date_start = strtotime( get_field('start_datum', "option") );
 	$date_end = strtotime( get_field('eind_datum', "option") );
@@ -66,4 +66,4 @@ function popup() {
 	}
 }
 // popup laden in footer
-add_action('wp_footer', 'popup');
+add_action('wp_footer', 'webvision_popup');
